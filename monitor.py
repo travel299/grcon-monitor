@@ -1,7 +1,7 @@
 import requests
 import os
 
-URL = "https://schedule.cf-grcon-isl-pakistan.com/schedule/grcon-isl-pakistan/WORK_National_VISA"
+URL = "https://schedule.cf-grcon-is1-pakistan.com/schedule/grcon-is1-pakistan/WORK_National_VISA"
 
 TOKEN = os.environ["TG_BOT_TOKEN"]
 CHAT_ID = os.environ["TG_CHAT_ID"]
@@ -23,5 +23,5 @@ def check():
     else:
         print("No slot yet")
 
-if _name_ == "_main_":
+if __name__ == "__main__":
     check()
