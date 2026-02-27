@@ -8,7 +8,10 @@ CHAT_ID = os.environ["TG_CHAT_ID"]
 
 def send(msg):
     url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-    data = {"chat_id": CHAT_ID, "text": msg}
+    data = {
+        "chat_id": CHAT_ID,
+        "text": msg
+    }
     requests.post(url, data=data)
 
 def check():
