@@ -1,20 +1,24 @@
-name: Greece Slot Monitor
+me: Greece Slot Monitor
 
 on:
   schedule:
-    - cron: '*/15 * * * * *'  # ہر 15 سیکنڈ بعد
-  workflow_dispatch:  # آپ دستی طور پر بھی چلا سکتے ہیں
+    - cron: "*/1 * * * *"
+  workflow_dispatch:
 
 jobs:
   monitor:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - name: Set up Python
-        uses: actions/setup-python@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.x'
-      - name: Install dependencies
+          python-version: "3.11"
+
+      - name: Install requests
         run: pip install requests
-      - name: Run monitor script
+
+      - name: Run monitor
         run: python monitor.py
