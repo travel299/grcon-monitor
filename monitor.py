@@ -1,27 +1,19 @@
 import requests
-import os
+import time
 
-URL = "https://schedule.cf-grcon-is1-pakistan.com/schedule/grcon-is1-pakistan/WORK_National_VISA"
+URL = "https://schedule.cf-grcon-isl-pakistan.com/schedule/grcon-isl-pakistan/WORK_National_VISA"
 
-TOKEN = os.environ["TG_BOT_TOKEN"]
-CHAT_ID = os.environ["TG_CHAT_ID"]
+def check_slots():
+    try:
+        response = requests.get(URL, timeout=10)
+        if "No appointments available" in response.text:
+            print("❌ No slots available")
+        else:
+            print("✅ Slot may be available! Check website")
+    except Exception as e:
+        print(f"Error checking the site: {e}")
 
-def send(msg):
-    url = f"https://api.telegram.org/bot{TOKEN}/sendMessage"
-    data = {
-        "chat_id": CHAT_ID,
-        "text": msg
-    }
-    requests.post(url, data=data)
-
-def check():
-    r = requests.get(URL)
-    text = r.text.lower()
-
-    if "available" in text or "slot" in text:
-        send("🚨 Greece appointment slot may be open! Check now:\n" + URL)
-    else:
-        print("No slot yet")
-
-if __name__ == "__main__":
-    check()
+if _name_ == "_main_":
+    while True:
+        check_slots()
+        time.sleep(15)
